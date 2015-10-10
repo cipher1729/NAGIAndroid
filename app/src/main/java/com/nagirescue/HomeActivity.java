@@ -158,6 +158,10 @@ public class HomeActivity extends Activity
                 {
                     layoutId= R.layout.findlayout;
                 }
+                else if(index==2)
+                {
+                    layoutId= R.layout.lostlayout;
+                }
                 else
                 {
                     layoutId= R.layout.fragment_home;

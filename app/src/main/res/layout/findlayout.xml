@@ -16,7 +16,7 @@
     <Button
      android:layout_width="match_parent"
      android:layout_height="wrap_content"
-     android:text="Attach image"/>
+     android:text="Click an image"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -239,6 +239,10 @@
             android:hint="454500000"
             android:layout_weight="55"></EditText>
     </LinearLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit"/>
 </LinearLayout>
 </ScrollView>
 
