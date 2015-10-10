@@ -8,6 +8,7 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -50,6 +51,7 @@ public class HomeActivity extends Activity
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
+
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
@@ -120,6 +122,8 @@ public class HomeActivity extends Activity
          * Returns a new instance of this fragment for the given section
          * number.
          */
+        static int layoutId;
+        static boolean first=true;
         public static PlaceholderFragment newInstance(int sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
@@ -129,12 +133,38 @@ public class HomeActivity extends Activity
         }
 
         public PlaceholderFragment() {
+            //layoutId = R.layout.findlayout;
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_home, container, false);
+           // int index = savedInstanceState.getInt(ARG_SECTION_NUMBER);
+
+            //if(index==0)
+            //{
+              //  layoutId= R.layout.activity_home;
+            //}
+
+            if(first==true)
+            {
+                first=false;
+                layoutId= R.layout.fragment_home;
+            }
+            else
+            {
+                int index = getArguments().getInt(ARG_SECTION_NUMBER);
+                if(index==1)
+                {
+                    layoutId= R.layout.findlayout;
+                }
+                else
+                {
+                    layoutId= R.layout.fragment_home;
+                }
+
+            }
+            View rootView = inflater.inflate(layoutId, container, false);
             return rootView;
         }
 

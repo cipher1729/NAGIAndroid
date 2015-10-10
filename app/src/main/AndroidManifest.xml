@@ -11,10 +11,6 @@
             android:exported="true"
             android:label="@string/title_activity_home" >
         </activity>
-        <activity
-            android:name=".FindActivity"
-            android:label="@string/title_activity_find" >
-        </activity>
     </application>
 
 </manifest>
