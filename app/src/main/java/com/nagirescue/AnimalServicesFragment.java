@@ -9,18 +9,16 @@ import android.view.ViewGroup;
 /**
  * Created by cipher1729 on 10/10/2015.
  */
-public class LostFragment extends Fragment {
+public class AnimalServicesFragment extends Fragment {
     View rootView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        int layoutId= R.layout.lostlayout;
+        int layoutId= R.layout.animalservicelayout;
         rootView = inflater.inflate(layoutId, container, false);
         //setOnClickListeners();
         return rootView;
     }
-
-
 
 }

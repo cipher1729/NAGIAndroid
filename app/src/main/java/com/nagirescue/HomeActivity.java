@@ -61,7 +61,19 @@ public class HomeActivity extends Activity
                     .replace(R.id.container, new LostAndFoundFragment())
                     .commit();
         }
+        else if(position==2)
+        {
+            fragmentManager.beginTransaction()
+                    .replace(R.id.container, new AnimalServicesFragment())
+                    .commit();
+        }
         else if(position==3)
+        {
+            fragmentManager.beginTransaction()
+                    .replace(R.id.container, new DonationFragment())
+                    .commit();
+        }
+        else if(position==4)
         {
             fragmentManager.beginTransaction()
                     .replace(R.id.container, new FeedbackFragment())

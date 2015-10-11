@@ -10,7 +10,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_alignParentTop="true"
         android:background="@android:color/holo_green_dark"
         android:id="@+id/linearLayout"
@@ -18,23 +18,26 @@
         android:weightSum="1">
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="60dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:id="@+id/logoImageView"
             android:src="@drawable/logo"
             android:layout_alignParentStart="true"
             android:layout_gravity="top"
-            android:layout_weight="0.13" />
+            android:layout_weight="0.30"
+            android:layout_marginLeft="10dp" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="NAGI HOME"
-            android:id="@+id/textView"
+            android:text="DONATION"
+            android:id="@+id/donationTextView"
             android:layout_gravity="center_horizontal|top"
             android:layout_marginTop="20dp"
-            android:typeface="serif" />
+            android:typeface="serif"
+            android:layout_weight="0.70"
+            android:layout_marginLeft="10dp" />
 
     </LinearLayout>
 
@@ -44,28 +47,36 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/linearLayout"
         android:layout_alignParentStart="true"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:layout_alignParentEnd="true">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Who are we?"
-            android:id="@+id/textView2"
-            android:layout_marginTop="50dp"
-            android:typeface="monospace" />
+            android:text="Do you wish to donate for NAGI Foundation?"
+            android:id="@+id/findAnimalCareTextView"
+            android:layout_marginTop="10dp"
+            android:typeface="serif" />
 
-        <TextView
-            android:layout_width="315dp"
+        <Button
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:ems="10"
-            android:id="@+id/contentTextView"
-            android:text="        The Nagi Foundation is a 501(c)3 organization dedicated to serving the First Nations community members and their animals.             By sharing resources, information and support we can provide opportunities for animal owners to keep and protect their animals"
-            android:layout_gravity="center|bottom|left|right|top"
-            android:layout_weight="0.16"
-            android:typeface="monospace"
-            android:textAlignment="inherit" />
+            android:text="Yes"
+            android:id="@+id/yesBtn"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@android:color/holo_green_dark"/>
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="No"
+            android:id="@+id/noBtn"
+            android:layout_gravity="center_horizontal"
+            android:background="@android:color/holo_green_dark"/>
+
     </LinearLayout>
 
 </RelativeLayout>

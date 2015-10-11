@@ -15,11 +15,12 @@
         android:layout_height="wrap_content"
         android:text="Contact us"
         android:layout_gravity="center"
-        android:gravity="center"/>
+        android:gravity="center"
+            android:textSize="50dp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sheila K iyengar"
+            android:text="Sheila K Iyengar"
             android:layout_gravity="center"
             android:gravity="center"/>
         <TextView

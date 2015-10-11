@@ -16,7 +16,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Attach image"/>
+                android:text="Click an image"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -36,7 +36,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:hint="Dog/Cat/Horse"
-                    android:layout_weight="55"></EditText>
+                    android:layout_weight="55"
+                    android:id="@+id/type">
+
+                </EditText>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -51,7 +54,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:hint="Male/Female"
-                    android:layout_weight="55"></EditText>
+                    android:layout_weight="55"
+                    android:id="@+id/sex"></EditText>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -66,7 +70,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:hint="Color"
-                    android:layout_weight="55"></EditText>
+                    android:layout_weight="55"
+                    android:id="@+id/color"></EditText>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -81,7 +86,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:hint="Breed"
-                    android:layout_weight="55"></EditText>
+                    android:layout_weight="55"
+                    android:id="@+id/breed"></EditText>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -96,7 +102,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:hint="Height"
-                    android:layout_weight="55"></EditText>
+                    android:layout_weight="55"
+                    android:id="@+id/height"></EditText>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -111,7 +118,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:hint="Collared"
-                    android:layout_weight="55"></EditText>
+                    android:layout_weight="55"
+                    android:id="@+id/collared"></EditText>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -126,7 +134,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:hint="Yes/No"
-                    android:layout_weight="55"></EditText>
+                    android:layout_weight="55"
+                    android:id="@+id/tagged"></EditText>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -141,7 +150,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:hint="Location"
-                    android:layout_weight="55"></EditText>
+                    android:layout_weight="55"
+                    android:id="@+id/location"></EditText>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -151,12 +161,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="When did you see it ?"
-                    android:layout_weight="45"/>
+                    android:layout_weight="45"
+                    />
                 <EditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:hint="Time"
-                    android:layout_weight="55"></EditText>
+                    android:layout_weight="55"
+                    android:id="@+id/time"></EditText>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -171,7 +183,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:hint=""
-                    android:layout_weight="55"></EditText>
+                    android:layout_weight="55"
+                    android:id="@+id/other"></EditText>
             </LinearLayout>
             <TextView
                 android:layout_width="match_parent"
@@ -192,7 +205,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:hint="abc@xyz.com"
-                    android:layout_weight="55"></EditText>
+                    android:layout_weight="55"
+                    android:id="@+id/email"></EditText>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -207,7 +221,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:hint="John"
-                    android:layout_weight="55"></EditText>
+                    android:layout_weight="55"
+                    android:id="@+id/firstName"></EditText>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -222,7 +237,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:hint="Doe"
-                    android:layout_weight="55"></EditText>
+                    android:layout_weight="55"
+                    android:id="@+id/lastName"></EditText>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -237,12 +253,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:hint="454500000"
-                    android:layout_weight="55"></EditText>
+                    android:layout_weight="55"
+                    android:id="@+id/phone"></EditText>
             </LinearLayout>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Submit"/>
+                android:text="Submit"
+                android:id="@+id/submitBtn"/>
         </LinearLayout>
     </ScrollView>
 
