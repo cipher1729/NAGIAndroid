@@ -5,19 +5,13 @@ import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 
 public class HomeActivity extends Activity
@@ -53,9 +47,27 @@ public class HomeActivity extends Activity
         // update the main content by replacing fragments
 
         FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                .commit();
+        if(position ==0 )
+        //create the home fragment
+        {
+            fragmentManager.beginTransaction()
+                    .replace(R.id.container, new HomeFragment())
+                    .commit();
+        }
+
+        else if(position==1)
+        {
+            fragmentManager.beginTransaction()
+                    .replace(R.id.container, new LostAndFoundFragment())
+                    .commit();
+        }
+        else
+        {
+            /*fragmentManager.beginTransaction()
+                    .replace(R.id.container, new HomeFragment());
+                    .commit();*/
+        }
+
     }
 
     public void onSectionAttached(int number) {
@@ -124,6 +136,7 @@ public class HomeActivity extends Activity
          */
         static int layoutId;
         static boolean first=true;
+        View rootView;
         public static PlaceholderFragment newInstance(int sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
@@ -146,20 +159,18 @@ public class HomeActivity extends Activity
               //  layoutId= R.layout.activity_home;
             //}
 
-            if(first==true) {
-                first = false;
-                layoutId = R.layout.homelayout;
+            if(first==true)
+            {
+                first=false;
+                layoutId= R.layout.homelayout;
             }
             else
             {
                 int index = getArguments().getInt(ARG_SECTION_NUMBER);
                 if(index==1)
                 {
-                    layoutId= R.layout.findlayout;
-                }
-                else if(index==2)
-                {
-                    layoutId= R.layout.lostlayout;
+                    layoutId= R.layout.lostfoundlayout;
+                    //setLostFoundListeners();
                 }
                 else
                 {
@@ -167,7 +178,7 @@ public class HomeActivity extends Activity
                 }
 
             }
-            View rootView = inflater.inflate(layoutId, container, false);
+            rootView = inflater.inflate(layoutId, container, false);
             return rootView;
         }
 
@@ -177,6 +188,19 @@ public class HomeActivity extends Activity
             ((HomeActivity) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
+
+        /*HELPER*//*
+        private  void setLostFoundListeners()
+        {
+           rootView.findViewById(R.id.foundBtn).setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View view) {
+
+               }
+           });
+        }*/
     }
+
+
 
 }
