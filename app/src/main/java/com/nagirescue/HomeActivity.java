@@ -146,10 +146,9 @@ public class HomeActivity extends Activity
               //  layoutId= R.layout.activity_home;
             //}
 
-            if(first==true)
-            {
-                first=false;
-                layoutId= R.layout.fragment_home;
+            if(first==true) {
+                first = false;
+                layoutId = R.layout.homelayout;
             }
             else
             {
@@ -164,7 +163,7 @@ public class HomeActivity extends Activity
                 }
                 else
                 {
-                    layoutId= R.layout.fragment_home;
+                    layoutId= R.layout.homelayout;
                 }
 
             }
