@@ -5,13 +5,20 @@ import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.ContentResolver;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 
 public class HomeActivity extends Activity
@@ -210,16 +217,10 @@ public class HomeActivity extends Activity
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
 
-        /*HELPER*//*
-        private  void setLostFoundListeners()
-        {
-           rootView.findViewById(R.id.foundBtn).setOnClickListener(new View.OnClickListener() {
-               @Override
-               public void onClick(View view) {
-
-               }
-           });
-        }*/
+        @Override
+        public void onActivityResult(int requestCode, int resultCode, Intent data) {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
 

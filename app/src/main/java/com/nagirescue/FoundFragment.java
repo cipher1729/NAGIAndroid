@@ -1,20 +1,30 @@
 package com.nagirescue;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.ContentResolver;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -30,6 +40,8 @@ public class FoundFragment extends Fragment {
     View rootView;
     String type,sex,color,breed, height,collared,tagged,location,time,email,
             firstName,lastName,phone,other,issueType;
+    final int TAKE_PICTURE=0;
+    Uri imageUri;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -47,6 +59,20 @@ public class FoundFragment extends Fragment {
                 doPostRequest();
             }
         });
+
+        ((Button)rootView.findViewById(R.id.cameraBtn)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+                File photo = new File(Environment.getExternalStorageDirectory(),  "Pic.jpg");
+                intent.putExtra(MediaStore.EXTRA_OUTPUT,
+                        Uri.fromFile(photo));
+               imageUri = Uri.fromFile(photo);
+                startActivityForResult(intent, TAKE_PICTURE);
+            }
+        });
+
+
     }
 
     private void doPostRequest() {
@@ -124,4 +150,35 @@ public class FoundFragment extends Fragment {
         multipart.addStringPart("dummy", "fileName");
         multipart.addStringPart("dummy", "fileObject");
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case TAKE_PICTURE:
+                if (resultCode == Activity.RESULT_OK) {
+                    Uri selectedImage = imageUri;
+                    getActivity().getContentResolver().notifyChange(selectedImage, null);
+                    ImageView imageView = (ImageView)rootView.findViewById(R.id.imageView);
+                    ContentResolver cr = getActivity().getContentResolver();
+                    Bitmap bitmap;
+                    try {
+                        bitmap = android.provider.MediaStore.Images.Media
+                                .getBitmap(cr, selectedImage);
+                        imageView.setScaleType(ImageView.ScaleType.FIT_START);
+                        imageView.setVisibility(View.VISIBLE);
+                        rootView.findViewById(R.id.cameraBtn).setVisibility(View.GONE);
+
+                        imageView.setImageBitmap(bitmap);
+                        Toast.makeText(getActivity(), selectedImage.toString(),
+                                Toast.LENGTH_LONG).show();
+                    } catch (Exception e) {
+                        Toast.makeText(getActivity(), "Failed to load", Toast.LENGTH_SHORT)
+                                .show();
+                        Log.e("Camera", e.toString());
+                    }
+                }
+        }
+    }
+
 }
