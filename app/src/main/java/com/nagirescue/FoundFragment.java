@@ -132,7 +132,7 @@ public class FoundFragment extends Fragment {
     }
 
     public void updateFields(MultiPartHelper multipart) {
-        multipart.addStringPart(type, "type");
+   /*     multipart.addStringPart(type, "type");
         multipart.addStringPart(sex, "sex");
         multipart.addStringPart(color, "color");
         multipart.addStringPart(breed, "breed");
@@ -146,6 +146,25 @@ public class FoundFragment extends Fragment {
         multipart.addStringPart(lastName, "lastName");
         multipart.addStringPart(phone, "phone");
         multipart.addStringPart(other, "other");
+        multipart.addStringPart(issueType, "issueType");
+        multipart.addStringPart("dummy", "fileName");
+        multipart.addStringPart("dummy", "fileObject");*/
+
+
+        multipart.addStringPart("Cat", "type");
+        multipart.addStringPart("male", "sex");
+        multipart.addStringPart("red", "color");
+        multipart.addStringPart("gumpy", "breed");
+        multipart.addStringPart("1.3", "height");
+        multipart.addStringPart("true", "collared");
+        multipart.addStringPart("true", "tagged");
+        multipart.addStringPart("mesa", "location");
+        multipart.addStringPart("15051520", "time");
+        multipart.addStringPart("cipher1729@gmail.com", "email");
+        multipart.addStringPart("Joe", "firstName");
+        multipart.addStringPart("Doe", "lastName");
+        multipart.addStringPart("11111111", "phone");
+        multipart.addStringPart("none", "other");
         multipart.addStringPart(issueType, "issueType");
         multipart.addStringPart("dummy", "fileName");
         multipart.addStringPart("dummy", "fileObject");
