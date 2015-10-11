@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -97,7 +98,7 @@ public class PlacesTask extends AsyncTask<Context, Void, String>{
         try {
             JSONObject obj = new JSONObject(result);
             JSONArray array = obj.getJSONArray("results");
-            List<String> placeList = new ArrayList<String>();
+            final List<String> placeList = new ArrayList<String>();
             //create POJOs for the object
             for(int i=0;i<array.length();i++)
             {
@@ -115,6 +116,12 @@ public class PlacesTask extends AsyncTask<Context, Void, String>{
             ListAdapter adapter = new ArrayAdapter<String>(cxt,android.R.layout.simple_list_item_1, placeList);
             ((ListView)AnimalServicesFragment.rootView.findViewById(R.id.placesList)).setVisibility(View.VISIBLE);
             ((ListView)AnimalServicesFragment.rootView.findViewById(R.id.placesList)).setAdapter(adapter);
+            ((ListView)AnimalServicesFragment.rootView.findViewById(R.id.placesList)).setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    String clickedPlace = placeList.get(i);
+                }
+            });
 
 
         } catch (JSONException e) {
