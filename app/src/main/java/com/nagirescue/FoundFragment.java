@@ -109,7 +109,7 @@ public class FoundFragment extends Fragment {
 
                     MultiPartHelper multipart = new MultiPartHelper(connection);
                     updateFields(multipart);
-                    multipart.makeRequest();
+                    //multipart.makeRequest();
 
                     //get other results for display
                     urlStr = "http://nagifound-pcqzft2why.elasticbeanstalk.com/nagi/getlostfound";
@@ -132,7 +132,7 @@ public class FoundFragment extends Fragment {
     }
 
     public void updateFields(MultiPartHelper multipart) {
-   /*     multipart.addStringPart(type, "type");
+       /* multipart.addStringPart(type, "type");
         multipart.addStringPart(sex, "sex");
         multipart.addStringPart(color, "color");
         multipart.addStringPart(breed, "breed");
@@ -148,8 +148,8 @@ public class FoundFragment extends Fragment {
         multipart.addStringPart(other, "other");
         multipart.addStringPart(issueType, "issueType");
         multipart.addStringPart("dummy", "fileName");
-        multipart.addStringPart("dummy", "fileObject");*/
-
+        multipart.addStringPart("dummy", "fileObject");
+*/
 
         multipart.addStringPart("Cat", "type");
         multipart.addStringPart("male", "sex");

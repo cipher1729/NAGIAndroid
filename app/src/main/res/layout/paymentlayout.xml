@@ -72,10 +72,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Donor Details:"
+                    android:text="Donor Details"
                     android:id="@+id/donorTextView"
                     android:layout_marginTop="10dp"
-                    android:typeface="serif" />
+                    android:typeface="serif"
+                    android:layout_gravity="center" />
                 </LinearLayout>
 
             <LinearLayout
@@ -97,7 +98,10 @@
                     android:inputType="textPersonName"
                     android:ems="10"
                     android:id="@+id/firstNameTextField"
-                    android:layout_weight="100" />
+                    android:layout_weight="100"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:importantForAccessibility="yes" />
             </LinearLayout>
 
             <LinearLayout
@@ -119,7 +123,8 @@
                     android:inputType="textPersonName"
                     android:ems="10"
                     android:id="@+id/lastNameTextField"
-                    android:layout_weight="100" />
+                    android:layout_weight="100"
+                    android:importantForAccessibility="yes" />
             </LinearLayout>
 
             <LinearLayout
@@ -141,7 +146,8 @@
                     android:inputType="textEmailAddress"
                     android:ems="10"
                     android:id="@+id/emailTextField"
-                    android:layout_weight="100" />
+                    android:layout_weight="100"
+                    android:importantForAccessibility="yes" />
             </LinearLayout>
 
             <LinearLayout
@@ -163,7 +169,8 @@
                     android:inputType="text|phone"
                     android:ems="10"
                     android:id="@+id/phoneTextField"
-                    android:layout_weight="100" />
+                    android:layout_weight="100"
+                    android:importantForAccessibility="yes" />
             </LinearLayout>
 
             <LinearLayout
@@ -185,314 +192,32 @@
                     android:inputType="textPersonName"
                     android:ems="10"
                     android:id="@+id/amountTextField"
-                    android:layout_weight="100" />
+                    android:layout_weight="100"
+                    android:importantForAccessibility="yes" />
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
-                android:layout_below="@+id/linearLayout"
+                android:layout_below="@+id/linearLayoutPayPalButton"
                 android:layout_alignParentStart="true"
                 android:weightSum="1"
                 android:layout_alignParentEnd="true">
 
-
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <Button
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Payment Details:"
-                    android:id="@+id/paymentTextView"
-                    android:layout_marginTop="10dp"
-                    android:typeface="serif" />
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:layout_below="@+id/linearLayout"
-                android:layout_alignParentStart="true"
-                android:weightSum="1"
-                android:layout_alignParentEnd="true"
-                android:id="@+id/payPalradiobutton">
-
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="PayPal"
-                    android:id="@+id/radioButton"
-                    android:checked="true" />
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Email:"
-                    android:id="@+id/emailPayPalTextView"
-                    android:layout_weight="80" />
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
-                    android:ems="10"
-                    android:id="@+id/emailPayPalTextField"
-                    android:layout_weight="100" />
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Password:"
-                    android:id="@+id/passwordTextView"
-                    android:layout_weight="80" />
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPassword"
-                    android:ems="10"
-                    android:id="@+id/passwordTextField"
-                    android:layout_weight="100" />
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:layout_below="@+id/linearLayout"
-                android:layout_alignParentStart="true"
-                android:weightSum="1"
-                android:layout_alignParentEnd="true">
-
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="or"
-                    android:id="@+id/orTextView"
-                    android:layout_marginTop="10dp"
+                    android:text="Pay with PayPal"
+                    android:id="@+id/payPalBtn"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/holo_green_dark"
                     android:typeface="serif"
-                    android:layout_gravity="center" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:layout_below="@+id/linearLayout"
-                android:layout_alignParentStart="true"
-                android:weightSum="1"
-                android:layout_alignParentEnd="true">
-
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Card"
-                    android:id="@+id/radioButton2"
-                    android:checked="false" />
+                    style="@android:style/TextAppearance.DeviceDefault.Widget.Button"
+                    android:layout_marginTop="10dp" />
 
             </LinearLayout>
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Name on Card:"
-                    android:id="@+id/cardNameTextView"
-                    android:layout_weight="80" />
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:ems="10"
-                    android:id="@+id/cardNameTextField"
-                    android:layout_weight="100" />
-            </LinearLayout>
-
-
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Card No:"
-                    android:id="@+id/cardNoTextView"
-                    android:layout_weight="80" />
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="text|number"
-                    android:ems="10"
-                    android:id="@+id/cardNoTextField"
-                    android:layout_weight="100" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="CVV:"
-                    android:id="@+id/cvvTextView"
-                    android:layout_weight="80" />
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="text|number"
-                    android:ems="10"
-                    android:id="@+id/cvvTextField"
-                    android:layout_weight="100" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Address Line 1:"
-                    android:id="@+id/address1TextView"
-                    android:layout_weight="80" />
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:ems="10"
-                    android:id="@+id/address1TextField"
-                    android:layout_weight="100" />
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Address Line 2:"
-                    android:id="@+id/address2TextView"
-                    android:layout_weight="80" />
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:ems="10"
-                    android:id="@+id/address2TextField"
-                    android:layout_weight="100" />
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="City:"
-                    android:id="@+id/cityTextView"
-                    android:layout_weight="80" />
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:ems="10"
-                    android:id="@+id/cityTextField"
-                    android:layout_weight="100" />
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="State:"
-                    android:id="@+id/stateTextView"
-                    android:layout_weight="80" />
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:ems="10"
-                    android:id="@+id/stateTextField"
-                    android:layout_weight="100" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Zip Code:"
-                    android:id="@+id/zipTextView"
-                    android:layout_weight="80" />
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="text|number"
-                    android:ems="10"
-                    android:id="@+id/zipTextField"
-                    android:layout_weight="100" />
-            </LinearLayout>
-
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Donate"
-                android:id="@+id/donateBtn"
-                android:layout_gravity="center_horizontal"
-                android:background="@android:color/holo_green_dark"
-                android:typeface="serif"
-                style="@android:style/TextAppearance.DeviceDefault.Widget.Button"/>
 
         </LinearLayout>
 
