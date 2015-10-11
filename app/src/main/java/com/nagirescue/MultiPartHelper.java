@@ -1,5 +1,7 @@
 package com.nagirescue;
 
+import android.app.FragmentManager;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -22,7 +24,7 @@ import java.util.List;
         public String contentType;
         public String boundary;
         public HttpURLConnection connection;
-
+        public StringBuilder sb;
         private final List<FilePart> fileParts = new ArrayList<>();
         private final List<StringPart> stringParts = new ArrayList<>();
 
@@ -91,7 +93,7 @@ import java.util.List;
                 InputStream is = connection.getInputStream();
                 BufferedReader bufferedReader= new BufferedReader(new InputStreamReader(is,"UTF-8"));
                 String line;
-                StringBuilder sb = new StringBuilder();
+                sb = new StringBuilder();
                 line= bufferedReader.readLine();
                 while(line!=null)
                 {
@@ -104,6 +106,11 @@ import java.util.List;
 
                 out.close();
                 writer.close();
+
+
+
+
+
 
 
             } catch (IOException ex) {

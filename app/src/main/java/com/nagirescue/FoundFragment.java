@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -50,6 +51,7 @@ public class FoundFragment extends Fragment {
     Uri imageUri;
     Date today;
     String fileTime;
+    public static JSONArray retArray;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -139,8 +141,18 @@ public class FoundFragment extends Fragment {
                     multipart.addStringPart("found", "requestType");
                     multipart.makeRequest();
 
+                    retArray = new JSONArray(multipart.sb.toString());
+
+                     /*I will start a new fragment here with the string in sb*/
+                    FragmentManager fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.container, new PostsFragment())
+                            .commit();
+
 
                 } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
