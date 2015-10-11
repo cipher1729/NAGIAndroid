@@ -61,10 +61,16 @@ public class HomeActivity extends Activity
                     .replace(R.id.container, new LostAndFoundFragment())
                     .commit();
         }
+        else if(position==3)
+        {
+            fragmentManager.beginTransaction()
+                    .replace(R.id.container, new FeedbackFragment())
+                    .commit();
+        }
         else
         {
-            /*fragmentManager.beginTransaction()
-                    .replace(R.id.container, new HomeFragment());
+           /* fragmentManager.beginTransaction()
+                    .replace(R.id.container, new FeedbackFragment())
                     .commit();*/
         }
 
@@ -80,6 +86,9 @@ public class HomeActivity extends Activity
                 break;
             case 3:
                 mTitle = getString(R.string.title_section3);
+                break;
+            case 4:
+                mTitle = getString(R.string.title_section4);
                 break;
         }
     }
