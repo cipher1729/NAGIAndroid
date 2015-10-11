@@ -6,6 +6,8 @@ import android.app.FragmentManager;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -32,19 +34,28 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by cipher1729 on 10/10/2015.
  */
 public class FoundFragment extends Fragment {
     View rootView;
+    Uri selectedImage;
+    double latitude, longitude;
     String type,sex,color,breed, height,collared,tagged,location,time,email,
             firstName,lastName,phone,other,issueType;
     final int TAKE_PICTURE=0;
     Uri imageUri;
+    Date today;
+    String fileTime;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        today = new Date();
+
+
         int layoutId= R.layout.findlayout;
         rootView = inflater.inflate(layoutId, container, false);
         setOnClickListeners();
@@ -57,6 +68,7 @@ public class FoundFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 doPostRequest();
+                Toast.makeText(getActivity(),"Submitted to database", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -64,7 +76,8 @@ public class FoundFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-                File photo = new File(Environment.getExternalStorageDirectory(),  "Pic.jpg");
+                fileTime= String.valueOf(today.getHours())+String.valueOf(today.getMinutes())+ String.valueOf(today.getSeconds());
+                File photo = new File(Environment.getExternalStorageDirectory(),  fileTime +  ".jpg");
                 intent.putExtra(MediaStore.EXTRA_OUTPUT,
                         Uri.fromFile(photo));
                imageUri = Uri.fromFile(photo);
@@ -84,20 +97,20 @@ public class FoundFragment extends Fragment {
 
                 /*Read values from form*/
 
-                    type = ((EditText) (rootView.findViewById(R.id.type))).toString();
-                    sex = ((EditText) (rootView.findViewById(R.id.sex))).toString();
-                    color = ((EditText) (rootView.findViewById(R.id.color))).toString();
-                    breed = ((EditText) (rootView.findViewById(R.id.breed))).toString();
-                    height = ((EditText) (rootView.findViewById(R.id.height))).toString();
-                    collared = ((EditText) (rootView.findViewById(R.id.collared))).toString();
-                    tagged = ((EditText) (rootView.findViewById(R.id.tagged))).toString();
-                    location = ((EditText) (rootView.findViewById(R.id.location))).toString();
-                    time = ((EditText) (rootView.findViewById(R.id.time))).toString();
-                    email = ((EditText) (rootView.findViewById(R.id.email))).toString();
-                    firstName = ((EditText) (rootView.findViewById(R.id.firstName))).toString();
-                    lastName = ((EditText) (rootView.findViewById(R.id.lastName))).toString();
-                    phone = ((EditText) (rootView.findViewById(R.id.phone))).toString();
-                    other = ((EditText) (rootView.findViewById(R.id.other))).toString();
+                    type = ((EditText) (rootView.findViewById(R.id.type))).getText().toString();
+                    sex = ((EditText) (rootView.findViewById(R.id.sex))).getText().toString();
+                    color = ((EditText) (rootView.findViewById(R.id.color))).getText().toString();
+                    breed = ((EditText) (rootView.findViewById(R.id.breed))).getText().toString();
+                    height = ((EditText) (rootView.findViewById(R.id.height))).getText().toString();
+                    collared = ((EditText) (rootView.findViewById(R.id.collared))).getText().toString();
+                    tagged = ((EditText) (rootView.findViewById(R.id.tagged))).getText().toString();
+                    location = ((EditText) (rootView.findViewById(R.id.location))).getText().toString();
+                    time = ((EditText) (rootView.findViewById(R.id.time))).getText().toString();
+                    email = ((EditText) (rootView.findViewById(R.id.email))).getText().toString();
+                    firstName = ((EditText) (rootView.findViewById(R.id.firstName))).getText().toString();
+                    lastName = ((EditText) (rootView.findViewById(R.id.lastName))).getText().toString();
+                    phone = ((EditText) (rootView.findViewById(R.id.phone))).getText().toString();
+                    other = ((EditText) (rootView.findViewById(R.id.other))).getText().toString();
                     issueType = "found";
 
                     String urlStr = "http://nagifound-pcqzft2why.elasticbeanstalk.com/nagi/postlostfound";
@@ -109,7 +122,10 @@ public class FoundFragment extends Fragment {
 
                     MultiPartHelper multipart = new MultiPartHelper(connection);
                     updateFields(multipart);
-                    //multipart.makeRequest();
+                    File imgFile = new File(Environment.getExternalStorageDirectory(),  fileTime+ ".jpg");
+                    multipart.addFilePart(imgFile,"image/jpeg","fileObject");
+                    multipart.addStringPart(fileTime + ".jpg", "fileName");
+                    multipart.makeRequest();
 
                     //get other results for display
                     urlStr = "http://nagifound-pcqzft2why.elasticbeanstalk.com/nagi/getlostfound";
@@ -132,26 +148,39 @@ public class FoundFragment extends Fragment {
     }
 
     public void updateFields(MultiPartHelper multipart) {
-       /* multipart.addStringPart(type, "type");
+        multipart.addStringPart(type, "type");
         multipart.addStringPart(sex, "sex");
         multipart.addStringPart(color, "color");
         multipart.addStringPart(breed, "breed");
         multipart.addStringPart(height, "height");
         multipart.addStringPart(collared, "collared");
         multipart.addStringPart(tagged, "tagged");
+        //converting location to lat/lng
+        Geocoder geocoder = new Geocoder(getActivity());
+        try {
+            List<Address> addresses = geocoder.getFromLocationName(location, 3);
+            if (addresses.size() != 0) {
+                latitude = (float) addresses.get(0).getLatitude();
+                longitude = (float) addresses.get(0).getLongitude();
+            } else {
+                latitude = 0.0f;
+                longitude = 0.0f;
+            }
+        } catch (Exception e) {
+
+        }
+        location= String.valueOf(latitude)+","+ String.valueOf(longitude);
         multipart.addStringPart(location, "location");
-        multipart.addStringPart(time, "time");
+        multipart.addStringPart(fileTime, "time");
         multipart.addStringPart(email, "email");
         multipart.addStringPart(firstName, "firstName");
         multipart.addStringPart(lastName, "lastName");
         multipart.addStringPart(phone, "phone");
         multipart.addStringPart(other, "other");
         multipart.addStringPart(issueType, "issueType");
-        multipart.addStringPart("dummy", "fileName");
-        multipart.addStringPart("dummy", "fileObject");
-*/
 
-        multipart.addStringPart("Cat", "type");
+
+       /* multipart.addStringPart("Cat", "type");
         multipart.addStringPart("male", "sex");
         multipart.addStringPart("red", "color");
         multipart.addStringPart("gumpy", "breed");
@@ -159,24 +188,23 @@ public class FoundFragment extends Fragment {
         multipart.addStringPart("true", "collared");
         multipart.addStringPart("true", "tagged");
         multipart.addStringPart("mesa", "location");
-        multipart.addStringPart("15051520", "time");
+        multipart.addStringPart(fileName, "time");
         multipart.addStringPart("cipher1729@gmail.com", "email");
         multipart.addStringPart("Joe", "firstName");
         multipart.addStringPart("Doe", "lastName");
         multipart.addStringPart("11111111", "phone");
         multipart.addStringPart("none", "other");
-        multipart.addStringPart(issueType, "issueType");
-        multipart.addStringPart("dummy", "fileName");
-        multipart.addStringPart("dummy", "fileObject");
+        multipart.addStringPart(issueType, "issueType");*/
+
     }
 
-    @Override
+        @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case TAKE_PICTURE:
                 if (resultCode == Activity.RESULT_OK) {
-                    Uri selectedImage = imageUri;
+                    selectedImage = imageUri;
                     getActivity().getContentResolver().notifyChange(selectedImage, null);
                     ImageView imageView = (ImageView)rootView.findViewById(R.id.imageView);
                     ContentResolver cr = getActivity().getContentResolver();
