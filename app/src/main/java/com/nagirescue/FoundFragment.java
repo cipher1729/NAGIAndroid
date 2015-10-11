@@ -28,7 +28,8 @@ import java.net.URL;
  */
 public class FoundFragment extends Fragment {
     View rootView;
-
+    String type,sex,color,breed, height,collared,tagged,location,time,email,
+            firstName,lastName,phone,other,issueType;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -48,122 +49,79 @@ public class FoundFragment extends Fragment {
         });
     }
 
-    private void doPostRequest()
-    {
+    private void doPostRequest() {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-/*
-                    String url= "http://nagifound-pcqzft2why.elasticbeanstalk.com/nagi/postlostfound";
-                    URL myUrl = new URL(url);
-                    HttpURLConnection httpURLConnection = (HttpURLConnection)myUrl.openConnection();
-                    //String BOUNDARY= "--eriksboundry--";
-                    *//*build query*//*
-                    Uri.Builder builder = new Uri.Builder();*/
+
 
                 /*Read values from form*/
-                    String type,sex,color,breed, height,collared,tagged,location,time,email,
-                            firstName,lastName,phone,other,issueType;
-                    type= ((EditText)(rootView.findViewById(R.id.type))).toString();
-                    sex= ((EditText)(rootView.findViewById(R.id.sex))).toString();
-                    color= ((EditText)(rootView.findViewById(R.id.color))).toString();
-                    breed= ((EditText)(rootView.findViewById(R.id.breed))).toString();
-                    height= ((EditText)(rootView.findViewById(R.id.height))).toString();
-                    collared= ((EditText)(rootView.findViewById(R.id.collared))).toString();
-                    tagged= ((EditText)(rootView.findViewById(R.id.tagged))).toString();
-                    location= ((EditText)(rootView.findViewById(R.id.location))).toString();
-                    time= ((EditText)(rootView.findViewById(R.id.time))).toString();
-                    email= ((EditText)(rootView.findViewById(R.id.email))).toString();
-                    firstName= ((EditText)(rootView.findViewById(R.id.firstName))).toString();
-                    lastName= ((EditText)(rootView.findViewById(R.id.lastName))).toString();
-                    phone= ((EditText)(rootView.findViewById(R.id.phone))).toString();
-                    other= ((EditText)(rootView.findViewById(R.id.other))).toString();
-                    issueType= "found";
 
+                    type = ((EditText) (rootView.findViewById(R.id.type))).toString();
+                    sex = ((EditText) (rootView.findViewById(R.id.sex))).toString();
+                    color = ((EditText) (rootView.findViewById(R.id.color))).toString();
+                    breed = ((EditText) (rootView.findViewById(R.id.breed))).toString();
+                    height = ((EditText) (rootView.findViewById(R.id.height))).toString();
+                    collared = ((EditText) (rootView.findViewById(R.id.collared))).toString();
+                    tagged = ((EditText) (rootView.findViewById(R.id.tagged))).toString();
+                    location = ((EditText) (rootView.findViewById(R.id.location))).toString();
+                    time = ((EditText) (rootView.findViewById(R.id.time))).toString();
+                    email = ((EditText) (rootView.findViewById(R.id.email))).toString();
+                    firstName = ((EditText) (rootView.findViewById(R.id.firstName))).toString();
+                    lastName = ((EditText) (rootView.findViewById(R.id.lastName))).toString();
+                    phone = ((EditText) (rootView.findViewById(R.id.phone))).toString();
+                    other = ((EditText) (rootView.findViewById(R.id.other))).toString();
+                    issueType = "found";
 
-
-                    /*if(type!=null) builder.appendQueryParameter("type", "dog");
-                    if(sex!=null) builder.appendQueryParameter("sex", "male");
-                    if(color!=null) builder.appendQueryParameter("color", "black");
-                    if(breed!=null)  builder.appendQueryParameter("breed", "dalmatian");
-                    if(height!=null) builder.appendQueryParameter("height", "1.3");
-                    if(collared!=null) builder.appendQueryParameter("collared", "yes");
-                    if(tagged!=null) builder.appendQueryParameter("tagged", "yes");
-                    if(location!=null) builder.appendQueryParameter("location","gilbert");
-                    if(time!=null) builder.appendQueryParameter("time", "8pm");
-                    if(email!=null) builder.appendQueryParameter("email", "abc");
-                    if(firstName!=null) builder.appendQueryParameter("firstName", "jo");
-                    if(lastName!=null) builder.appendQueryParameter("lastName", "do");
-                    if(phone!=null) builder.appendQueryParameter("phone", "4040404");
-                    if(other!=null)  builder.appendQueryParameter("other", "other");
-                    if(issueType!=null) builder.appendQueryParameter("issueType", issueType);
-
-
-                    String query = builder.build().getEncodedQuery();
-                    String charset = "UTF-8";
-                    // httpURLConnection.connect();
-                    httpURLConnection.setDoOutput(true);
-                    httpURLConnection.setRequestMethod("POST");
-                    //httpURLConnection.setRequestProperty("ENCTYPE", "multipart/form-data");
-                    httpURLConnection.setRequestProperty("Accept-Charset", charset);
-                    httpURLConnection.setRequestProperty("Content-Type", "multipart/form-data;boundary=xxxxxxx");
-                    OutputStream os = httpURLConnection.getOutputStream();
-                    BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-
-
-                    bufferedWriter.write(query);
-                    bufferedWriter.flush();
-                    bufferedWriter.close();
-                    httpURLConnection.connect();
-
-                    int response = httpURLConnection.getResponseCode();
-                    os.close();
-                    InputStream is = httpURLConnection.getInputStream();
-                    BufferedReader bufferedReader= new BufferedReader(new InputStreamReader(is,"UTF-8"));
-                    String line;
-                    StringBuilder sb = new StringBuilder();
-                    line= bufferedReader.readLine();
-                    while(line!=null)
-                    {
-                        sb.append(line);
-                        line= bufferedReader.readLine();
-                    }
-
-                    is.close();
-*/
-                    final String urlStr = "http://nagifound-pcqzft2why.elasticbeanstalk.com/nagi/postlostfound";
+                    String urlStr = "http://nagifound-pcqzft2why.elasticbeanstalk.com/nagi/postlostfound";
                     URL url = new URL(urlStr);
-                    HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                     connection.setDoInput(true);
                     connection.setDoOutput(true);
                     connection.setRequestMethod("POST");
 
                     MultiPartHelper multipart = new MultiPartHelper(connection);
-                    multipart.addStringPart("dog","type");
-                    multipart.addStringPart("dog","sex");
-                    multipart.addStringPart("dog","color");
-                    multipart.addStringPart("dog","breed");
-                    multipart.addStringPart("dog","height");
-                    multipart.addStringPart("dog","collared");
-                    multipart.addStringPart("dog","tagged");
-                    multipart.addStringPart("dog","location");
-                    multipart.addStringPart("12","time");
-                    multipart.addStringPart("dog","email");
-                    multipart.addStringPart("dog","firstName");
-                    multipart.addStringPart("dog","lastName");
-                    multipart.addStringPart("dog","phone");
-                    multipart.addStringPart("dog","other");
-                    multipart.addStringPart("dog","issueType");
-                    multipart.addStringPart("dummy","fileName");
-                    multipart.addStringPart("dummy","fileObject");
-
+                    updateFields(multipart);
                     multipart.makeRequest();
+
+                    //get other results for display
+                    urlStr = "http://nagifound-pcqzft2why.elasticbeanstalk.com/nagi/getlostfound";
+                    url = new URL(urlStr);
+                    connection = (HttpURLConnection) url.openConnection();
+                    connection.setDoInput(true);
+                    connection.setDoOutput(true);
+                    connection.setRequestMethod("POST");
+                    multipart = new MultiPartHelper(connection);
+                    updateFields(multipart);
+                    multipart.addStringPart("found", "requestType");
+                    multipart.makeRequest();
+
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }).start();
+    }
 
-        }
+    public void updateFields(MultiPartHelper multipart) {
+        multipart.addStringPart(type, "type");
+        multipart.addStringPart(sex, "sex");
+        multipart.addStringPart(color, "color");
+        multipart.addStringPart(breed, "breed");
+        multipart.addStringPart(height, "height");
+        multipart.addStringPart(collared, "collared");
+        multipart.addStringPart(tagged, "tagged");
+        multipart.addStringPart(location, "location");
+        multipart.addStringPart(time, "time");
+        multipart.addStringPart(email, "email");
+        multipart.addStringPart(firstName, "firstName");
+        multipart.addStringPart(lastName, "lastName");
+        multipart.addStringPart(phone, "phone");
+        multipart.addStringPart(other, "other");
+        multipart.addStringPart(issueType, "issueType");
+        multipart.addStringPart("dummy", "fileName");
+        multipart.addStringPart("dummy", "fileObject");
+    }
 }

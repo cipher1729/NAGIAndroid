@@ -68,7 +68,7 @@
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Pick a place"
+                android:text="Find veterinary centres near me"
                 android:id="@+id/addressBtn"
                 android:layout_gravity="center_horizontal"
                 android:background="@android:color/holo_green_dark"
