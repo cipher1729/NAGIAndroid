@@ -15,6 +15,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -53,12 +54,13 @@ public class FoundFragment extends Fragment {
             @Override
             public void run() {
                 try {
+/*
                     String url= "http://nagifound-pcqzft2why.elasticbeanstalk.com/nagi/postlostfound";
                     URL myUrl = new URL(url);
                     HttpURLConnection httpURLConnection = (HttpURLConnection)myUrl.openConnection();
-
-                    /*build query*/
-                    Uri.Builder builder = new Uri.Builder();
+                    //String BOUNDARY= "--eriksboundry--";
+                    *//*build query*//*
+                    Uri.Builder builder = new Uri.Builder();*/
 
                 /*Read values from form*/
                     String type,sex,color,breed, height,collared,tagged,location,time,email,
@@ -81,7 +83,7 @@ public class FoundFragment extends Fragment {
 
 
 
-                    if(type!=null) builder.appendQueryParameter("type", "dog");
+                    /*if(type!=null) builder.appendQueryParameter("type", "dog");
                     if(sex!=null) builder.appendQueryParameter("sex", "male");
                     if(color!=null) builder.appendQueryParameter("color", "black");
                     if(breed!=null)  builder.appendQueryParameter("breed", "dalmatian");
@@ -99,10 +101,13 @@ public class FoundFragment extends Fragment {
 
 
                     String query = builder.build().getEncodedQuery();
-
+                    String charset = "UTF-8";
                     // httpURLConnection.connect();
                     httpURLConnection.setDoOutput(true);
                     httpURLConnection.setRequestMethod("POST");
+                    //httpURLConnection.setRequestProperty("ENCTYPE", "multipart/form-data");
+                    httpURLConnection.setRequestProperty("Accept-Charset", charset);
+                    httpURLConnection.setRequestProperty("Content-Type", "multipart/form-data;boundary=xxxxxxx");
                     OutputStream os = httpURLConnection.getOutputStream();
                     BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
 
@@ -112,6 +117,8 @@ public class FoundFragment extends Fragment {
                     bufferedWriter.close();
                     httpURLConnection.connect();
 
+                    int response = httpURLConnection.getResponseCode();
+                    os.close();
                     InputStream is = httpURLConnection.getInputStream();
                     BufferedReader bufferedReader= new BufferedReader(new InputStreamReader(is,"UTF-8"));
                     String line;
@@ -124,9 +131,35 @@ public class FoundFragment extends Fragment {
                     }
 
                     is.close();
-                    os.close();
+*/
+                    final String urlStr = "http://nagifound-pcqzft2why.elasticbeanstalk.com/nagi/postlostfound";
+                    URL url = new URL(urlStr);
+                    HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+                    connection.setDoInput(true);
+                    connection.setDoOutput(true);
+                    connection.setRequestMethod("POST");
 
-                } catch (Exception e) {
+                    MultiPartHelper multipart = new MultiPartHelper(connection);
+                    multipart.addStringPart("dog","type");
+                    multipart.addStringPart("dog","sex");
+                    multipart.addStringPart("dog","color");
+                    multipart.addStringPart("dog","breed");
+                    multipart.addStringPart("dog","height");
+                    multipart.addStringPart("dog","collared");
+                    multipart.addStringPart("dog","tagged");
+                    multipart.addStringPart("dog","location");
+                    multipart.addStringPart("12","time");
+                    multipart.addStringPart("dog","email");
+                    multipart.addStringPart("dog","firstName");
+                    multipart.addStringPart("dog","lastName");
+                    multipart.addStringPart("dog","phone");
+                    multipart.addStringPart("dog","other");
+                    multipart.addStringPart("dog","issueType");
+                    multipart.addStringPart("dummy","fileName");
+                    multipart.addStringPart("dummy","fileObject");
+
+                    multipart.makeRequest();
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }

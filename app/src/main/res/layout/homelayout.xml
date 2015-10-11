@@ -61,7 +61,7 @@
             android:inputType="textMultiLine"
             android:ems="10"
             android:id="@+id/contentTextView"
-            android:text="        The Nagi Foundation is a 501(c)3 organization dedicated to serving the First Nations community members and their animals.             By sharing resources, information and support we can provide opportunities for animal owners to keep and protect their animals"
+            android:text="The Nagi Foundation is a 501(c)3 organization dedicated to serving the First Nations community members and their animals. By sharing resources, information and support we can provide opportunities for animal owners to keep and protect their animals"
             android:layout_gravity="center|bottom|left|right|top"
             android:layout_weight="0.16"
             android:typeface="monospace"
